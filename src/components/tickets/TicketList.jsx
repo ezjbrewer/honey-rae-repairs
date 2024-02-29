@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Ticket } from "./Ticket.jsx"
-import { getAllTickets } from "../../services/ticketService.jsx"
+import { getAllTickets } from "../services/ticketService.jsx"
 import "./Tickets.css"
 import { FilterBar } from "./Filter-Bar.jsx"
 
