@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { User } from "../users/User.jsx"
-import { getNonStaffUsers } from "../services/userService.jsx"
+import { getNonStaffUsers } from "../../services/userService.jsx"
+import { Link } from "react-router-dom"
 import "./Customers.css"
 
 export const CustomerList = () => {
@@ -14,7 +15,10 @@ export const CustomerList = () => {
 
     return <div className="customers">
         {customers.map(customerObj => {
-            return <User user={customerObj} />
+            return (
+            <Link key={customerObj.id} to={`/customers/${customerObj.id}`}>
+                <User user={customerObj} />
+            </Link>)
         })}
     </div>
 }
