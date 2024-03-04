@@ -6,18 +6,21 @@ import { FilterBar } from "./Filter-Bar.jsx"
 
 
 
-export const TicketList = () => {
+export const TicketList = ({ currentUser }) => {
   const [allTickets, setAllTickets] = useState([])
   const [showEmergencyOnly, setShowEmergencyOnly] = useState(false)
   const [filteredTickets, setFilteredTickets] = useState([])
   const [searchTerm, setSearchTerm] = useState("")
 
   
-  useEffect(() => {
-    getAllTickets.apply().then((ticketsArray) => {
+  const getAndSetTickets = () => {
+    getAllTickets().then((ticketsArray) => {
       setAllTickets(ticketsArray)
-      console.log("ticket")
     })
+  }
+
+  useEffect(() => {
+    getAndSetTickets()
   }, []) // runs on initial render of component
   
   useEffect(() => {
@@ -46,7 +49,7 @@ export const TicketList = () => {
       <article className="tickets">
         {filteredTickets.map(ticketObject => {
           return (
-          <Ticket ticket={ticketObject} key={ticketObject.id}/>
+          <Ticket ticket={ticketObject} currentUser={currentUser} getAndSetTickets={getAndSetTickets} key={ticketObject.id}/>
           )
         })}
       </article>
